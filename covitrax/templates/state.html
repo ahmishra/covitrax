@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} COVID-19 Tracker - States {% endblock title %}
+{% block status_states %} active {% endblock status_states %}
+
+{% block content %}
+<br><br>
+<div class="container">
+
+	<p style="margin-left: 20px;">Last Updated: {{ ":".join(data["status"].split("[")[0].split(":")[1:]) }}</p>
+	<small style="margin-left: 20px;">{{ data["total"][0]["name"] }} Cases in India: {{ data["total"][0]["values"].split()[0] }}</small>
+	<small style="margin-left: 20px;">{{ data["total"][1]["name"] }} patients in India: {{ data["total"][1]["values"].split()[0] }}</small>
+	<small style="margin-left: 20px;">{{ data["total"][2]["name"] }} in India: {{ data["total"][2]["values"].split()[0] }}</small>
+	<div class="row">
+		{% for i in data["states"] %}
+					<div class="card" style="width: 18rem; margin: 20px; padding: 50px; color: black; background-color: white; border-radius: 40px; border: 10px black solid;">
+							<div class="card-body">
+							    <h5 class="card-title">{{ i["state_name"] }}</h5>
+							    <h6 class="card-subtitle mb-2 text-muted">State Information</h6>
+							   <small>Active Cases: {{ i["total_cases"] }}</small><br>
+							   <small>Total Deaths: {{ i["total_deaths"] }}</small><br>
+							   <small>Recovered: {{ i["total_cured"] }}</small>
+					  		</div>
+					</div>
+		{% endfor %}
+	</div>
+
+</div>
+{% endblock content %}

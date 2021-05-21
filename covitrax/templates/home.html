@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %} COVID-19 Tracker - India {% endblock title %}
+{% block status_home %} active {% endblock status_home %}
+
+{% block content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://www.fda.gov/files/covid19-1600x900.jpg" class="d-block w-100" alt="..." style="height:90vh; width: 100vh; filter: brightness(0.5);">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Latest COVID-19 Data</h5>
+        <p>This service provides you with the latest State-Wise data from India</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://theodi.org/wp-content/uploads/2018/06/Data-trust-social-card-main-e1559910712348-640x360-640x360.png" class="d-block w-100" alt="..." style="height:90vh; width: 100vh; filter: brightness(0.5);">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Trusted Data Source Provider</h5>
+        <p>We use one of the most <a href="https://mohfw.gov.in/" style="color: white;">Trusted Data Source Provider</a> To to give our users accurate data </p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://www.bbvaapimarket.com/wp-content/uploads/2018/01/bigdata-1024x683.jpg" class="d-block w-100" alt="..." style="height:90vh; width: 100vh; filter: brightness(0.5);">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>State Wise Data</h5>
+        <p>We also provide you with lates COVID-19 data from each indian state</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <br><br><br><br>
+
+  <canvas id="graph" width="900" height="400" class="container">
+  	<script type="text/javascript">
+  		var ctx = document.getElementById("graph").getContext("2d");
+  		var graph = new Chart(ctx, {
+  			type: "line",
+  			data: {
+  				labels: {{ labels | safe }},
+  				datasets: [
+  					{
+  						label: "COVID-19 Active Cases",
+  						data: {{  values | safe }},
+  						fill: false,
+  						borderColor: "rgb(75, 192, 192)",
+  						lineTension: 0.5
+
+  					}
+  				]
+  			},
+  			options: {
+  				responsive: true
+  			}
+  		});
+  	</script>
+  </canvas>
+
+  <br><br><br><br>
+
+  <canvas id="graph2" width="900" height="400" class="container">
+  	<script type="text/javascript">
+  		var ctx2 = document.getElementById("graph2").getContext("2d");
+  		var graph2 = new Chart(ctx2, {
+  			type: "bar",
+  			data: {
+  				labels: {{ labels | safe }},
+  				datasets: [
+  					{
+  						label: "COVID-19 Active Cases",
+  						data: {{  values | safe }},
+  						fill: false,
+  						borderColor: "rgb(75, 192, 192)",
+  						lineTension: 0.5
+
+  					}
+  				]
+  			},
+  			options: {
+  				responsive: true
+  			}
+  		});
+  	</script>
+  </canvas>
+</div>
+
+<br><br>
+	<hr class="container" style="color: #212121; height: 4px;">
+	<br>
+	<strong style="color: white;"><p style="text-align: center;">Copright(C) Aryan Mishra 2021. Do Not Distribute!</p></strong>
+	<small><p style="text-align: center; color: gray;">Made with ❤️ by Aryan</p></small>
+	<br>
+
+{% endblock content %}
